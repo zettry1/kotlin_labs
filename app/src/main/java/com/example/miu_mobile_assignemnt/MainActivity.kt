@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private val user5= User("armin","armin","armin@gmail.com","323232")
 
     val dbusers = mutableListOf<User>(user1,user2,user3,user4,user5)
-    private val mainUser:User? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity() {
                     val sendIntent: Intent = Intent().apply {
                         action = Intent.ACTION_SEND
                         putExtra(Intent.EXTRA_TEXT, "Your password is " + found.pass)
-                        type = "text/plain"
                     }
                     val shareIntent = Intent.createChooser(sendIntent, null)
                     startActivity(shareIntent)
@@ -52,6 +50,11 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Fill the email field.", Toast.LENGTH_SHORT).show()
             }
+        }
+        register.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+
         }
 
     }

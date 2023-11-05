@@ -74,7 +74,7 @@ android:id="@+id/lastnameLabel"
 app:layout_constraintTop_toTopOf="@id/firstname"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:text="email" />
+android:text="lastname" />
 
 <EditText
 app:layout_constraintTop_toTopOf="@id/lastnameLabel"
@@ -90,7 +90,7 @@ android:id="@+id/usernameLabel"
 app:layout_constraintTop_toTopOf="@id/lastname"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:text="email"
+android:text="lastname"
     />
 
 <EditText

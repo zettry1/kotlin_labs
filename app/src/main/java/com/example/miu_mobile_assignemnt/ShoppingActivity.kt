@@ -34,7 +34,7 @@ class ShoppingActivity: AppCompatActivity() {
             profile.text = "Welcome! $username"
         }
 
-        var  gridView= findViewById<GridView>(R.id.maingrid)
+        val gridView= findViewById<GridView>(R.id.maingrid)
 //        var baseadapter=BaseAdapter
                 products.map {it->{
             var nameView = findViewById<TextView>(R.id.label)
