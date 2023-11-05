@@ -90,7 +90,7 @@
                     android:autoLink="all"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Forgot pass?"
+                    android:text="Forgot password?"
                     android:textAlignment="textEnd" />
 
                 <Button
