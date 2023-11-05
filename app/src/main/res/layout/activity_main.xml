@@ -28,9 +28,9 @@
             android:id="@+id/title"
             app:layout_constraintTop_toTopOf="@id/logo"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:gravity="center"
-            android:text="Sign in "
+            android:layout_height="60dp"
+            android:gravity="center_horizontal"
+            android:text="Sign in  to your account"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <androidx.cardview.widget.CardView
