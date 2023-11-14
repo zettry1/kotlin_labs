@@ -6,67 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="50dp"
+        app:layoutManager="LinearLayoutManager"/>
 
-        <EditText
-            android:id="@+id/input1"
-            android:layout_width="413dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="48dp"
-            android:hint="Enter android version" />
-
-        <EditText
-            android:id="@+id/input2"
-            android:layout_width="413dp"
-            android:layout_height="44dp"
-            android:hint="Enter android code name" />
-
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:padding="10sp">
         <Button
-            android:id="@+id/addButton"
+            android:id="@+id/cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add " />
-
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:id="@+id/table"
-            android:stretchColumns="0,1">
-
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:padding="1dp"
-                android:layout_height="16dp"
-
-                android:background="@color/teal_700"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:layout_column="0"
-                    android:text="Version"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_column="1"
-                    android:text="Code name"/>
-            </TableRow>
-
-
-
-
-        </TableLayout>
+            android:text="Go to Cart" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
