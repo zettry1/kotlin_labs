@@ -1,0 +1,2 @@
+10-29 13:43:28.397 20311 20338 I TestRunner: started: testSetFileType(com.example.miu_mobile_assignemnt.EBookTest)
+10-29 13:43:28.398 20311 20338 I TestRunner: finished: testSetFileType(com.example.miu_mobile_assignemnt.EBookTest)

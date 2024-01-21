@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/new_plant.xml",
+        "source": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/src/main/res/layout/new_plant.xml"
+    },
+    {
+        "merged": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/one_plant.xml",
+        "source": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/src/main/res/layout/one_plant.xml"
+    },
+    {
+        "merged": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_plant.xml",
+        "source": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/src/main/res/layout/fragment_plant.xml"
+    },
+    {
+        "merged": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_home.xml",
+        "source": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/src/main/res/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_garden.xml",
+        "source": "/Users/orgilbatbatsaikhan/AndroidStudioProjects/miu_mobile_assignemnt/app/src/main/res/layout/fragment_garden.xml"
+    }
+]
