@@ -1,92 +1,77 @@
 package com.bright.sunriseset
 
 import android.content.Context
-import android.icu.text.SimpleDateFormat
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import com.example.miu_mobile_assignemnt.R
 import com.example.miu_mobile_assignemnt.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.Locale
 
 class PlanetInfoActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var mainBinding: ActivityMainBinding
 
-    /**
-     * Called when the activity is first created. This function initializes the activity, inflates the layout,
-     * retrieves the current time, and asynchronously fetches sunrise and sunset times from an API.
-     * The fetched times are then dynamically localized and displayed in Chinese on TextViews.
-     *
-     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
-     *                           this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
-     */
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Inflate the layout using View Binding
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mainBinding.root)
 
-        // Get the current time
-        val currentTime = LocalDateTime.now()
-
-        // Asynchronously fetch sunrise and sunset times
         GlobalScope.launch(Dispatchers.Main) {
-            val sunriseDeferred = async(Dispatchers.IO) { fetchTime("sunrise") }
-            val sunsetDeferred = async(Dispatchers.IO) { fetchTime("sunset") }
+            val sunriseDeferred = async(Dispatchers.IO) { getTimes("sunrise") }
+            val sunsetDeferred = async(Dispatchers.IO) { getTimes("sunset") }
 
-            // Await the results of asynchronous tasks
             val sunriseTime = sunriseDeferred.await()
             val sunsetTime = sunsetDeferred.await()
 
-            // If both sunrise and sunset times are available, localize and display them in Chinese
             if (sunriseTime != null && sunsetTime != null) {
-                // Localize sunrise and sunset times
-                val localizedSunrise = getLocalizedTime(sunriseTime, this@PlanetInfoActivity)
-                val localizedSunset = getLocalizedTime(sunsetTime, this@PlanetInfoActivity)
-
-                // Display localized times on TextViews
-                binding.textViewSunrise.text =
-                    "${getString(R.string.SunriseTime)} $localizedSunrise"
-                binding.textViewSunset.text =
-                    "${getString(R.string.SunsetTime)} $localizedSunset"
+                val localSunzie = getCountryTime(sunriseTime, this@PlanetInfoActivity)
+                val localSunset = getCountryTime(sunsetTime, this@PlanetInfoActivity)
+                mainBinding.textviewSunrise.text =
+                    "${getString(Locale.SIMPLIFIED_CHINESE, R.string.SunriseTime)} $localSunzie"
+                mainBinding.textviewSunset.text =
+                    "${getString(Locale.SIMPLIFIED_CHINESE, R.string.SunriseTime)} $localSunset"
             }
         }
     }
 
-    /**
-     * Retrieves a localized time string based on the user's preferred language.
-     *
-     * @param time The LocalDateTime to be formatted.
-     * @param context The application context to access resources and preferences.
-     * @return A string representation of the localized time.
-     */
-    private fun getLocalizedTime(time: LocalDateTime, context: Context): String {
-        // Retrieve the user's preferred language from the device settings
-        val userPreferredLanguage = Locale.getDefault().language
+    private fun Context.getString(locale: Locale, @StringRes resId: Int, vararg formatArgs: Any): String {
+        var conf: Configuration = resources.configuration
+        conf = Configuration(conf)
+        conf.setLocale(locale)
+        val localizedContext = createConfigurationContext(conf)
+        return localizedContext.resources.getString(resId, *formatArgs)
+    }
 
-        // Create a SimpleDateFormat with the user's preferred language
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getCountryTime(time: LocalDateTime, context: Context): String {
+        val userPreferredLanguage = Locale.SIMPLIFIED_CHINESE.language
         val sdf = SimpleDateFormat("hh:mm a", Locale(userPreferredLanguage))
-
-        // Format the LocalDateTime into a string using the specified SimpleDateFormat
         return sdf.format(
             time.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
         )
     }
 
-
-    // Coroutine function to fetch sunrise or sunset time from the Sunrise-Sunset API
-    private suspend fun fetchTime(type: String): LocalDateTime? {
+    @RequiresApi(Build.VERSION_CODES.O)
+    private suspend fun getTimes(type: String): LocalDateTime? {
         return try {
             val apiUrl =
                 URL("https://api.sunrise-sunset.org/json?lat=37.7749&lng=-122.4194&formatted=0")
@@ -98,7 +83,6 @@ class PlanetInfoActivity : AppCompatActivity() {
                 while (reader.readLine().also { line = it } != null) {
                     response.append(line)
                 }
-
                 val jsonResponse = JSONObject(response.toString())
                 val timeUTC = jsonResponse.getJSONObject("results").getString(type)
                 val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault())
@@ -108,7 +92,6 @@ class PlanetInfoActivity : AppCompatActivity() {
                 urlConnection.disconnect()
             }
         } catch (e: Exception) {
-            e.printStackTrace()
             null
         }
     }
