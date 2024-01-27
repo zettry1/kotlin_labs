@@ -1,11 +1,8 @@
-Kotlin course. Lab 7
+Kotlin course. Lab extra 
 
 # About
-I learned about how to setup Room database using Dao interface with repository class.
-I had a trouble with versioning of room database, It was working other day, i am still having some good understanding of kotlin and mobile application configuration.
-Functionality is See my list of plants and  
-can see garden view and plant
-Implement async room database
-
+I did translation using knowledge that I learned from the lectures and example code.
+Also I changed old project into new project cause of failure to gradle syncing project.
+Overall this is good hands on lab to test internationalization
 #Required
 SDK version 33 and java needed

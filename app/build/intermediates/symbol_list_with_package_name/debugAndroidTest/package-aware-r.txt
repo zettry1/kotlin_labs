@@ -1,1 +1,0 @@
-com.example.miu_mobile_assignemnt.test
